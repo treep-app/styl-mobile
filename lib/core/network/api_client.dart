@@ -117,7 +117,7 @@ class ApiClient {
       if (response.statusCode == 401 && auth && tryRefresh != null) {
         final ok = await tryRefresh!();
         if (ok) {
-          return uploadFile(
+          return await uploadFile(
             path,
             bytes: bytes,
             filename: filename,
@@ -208,7 +208,7 @@ class ApiClient {
           tryRefresh != null) {
         final ok = await tryRefresh!();
         if (ok) {
-          return _send(
+          return await _send(
             method,
             path,
             body: body,

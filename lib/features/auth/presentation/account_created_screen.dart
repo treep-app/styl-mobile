@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../../core/auth/auth_controller.dart';
 import '../../../core/auth/post_auth_navigation.dart';
-import '../../../core/routing/app_routes.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../widgets/styl_primary_button.dart';
 

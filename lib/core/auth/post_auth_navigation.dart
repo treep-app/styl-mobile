@@ -102,7 +102,7 @@ Future<PostAuthDestination> resolvePostAuthDestination(
   final ownerDone = await session.readOwnerOnboardingComplete();
   if (ownerDone) {
     await session.clearProviderSetup();
-    return _ownerHomeDestination(auth, session);
+    return await _ownerHomeDestination(auth, session);
   }
 
   final stage = await session.readProviderSetupStage();
@@ -117,7 +117,7 @@ Future<PostAuthDestination> resolvePostAuthDestination(
       if (savedShopId != null &&
           await _ownerHasProgressedPastProfile(auth, savedShopId)) {
         await _markOwnerSetupComplete(session);
-        return _ownerHomeDestination(auth, session);
+        return await _ownerHomeDestination(auth, session);
       }
       try {
         final shops = await auth.catalogApi.listMyShops();
@@ -125,7 +125,7 @@ Future<PostAuthDestination> resolvePostAuthDestination(
         if (owned.isNotEmpty &&
             await _ownerHasProgressedPastProfile(auth, owned.first.id)) {
           await _markOwnerSetupComplete(session);
-          return _ownerHomeDestination(auth, session);
+          return await _ownerHomeDestination(auth, session);
         }
       } catch (_) {}
       return PostAuthDestination(
