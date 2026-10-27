@@ -1,4 +1,7 @@
 # Copy to android/key.properties (never commit). Used for release signing in CI and locally.
+#
+# storeFile is relative to android/app/ (the application module).
+# Place upload-keystore.jks in: mobile/android/app/upload-keystore.jks
 storePassword=your-keystore-password
 keyPassword=your-key-password
 keyAlias=upload

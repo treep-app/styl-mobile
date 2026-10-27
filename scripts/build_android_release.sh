@@ -10,7 +10,11 @@ API_BASE_URL="https://api.stylaus.com/api/v1"
 "$ROOT/scripts/ci_prepare.sh"
 
 if [[ ! -f "$ROOT/android/key.properties" ]]; then
-  echo "Missing android/key.properties — copy android/key.properties.example and add upload-keystore.jks" >&2
+  echo "Missing android/key.properties — copy android/key.properties.example" >&2
+  exit 1
+fi
+if [[ ! -f "$ROOT/android/app/upload-keystore.jks" ]]; then
+  echo "Missing android/app/upload-keystore.jks (Play upload keystore)" >&2
   exit 1
 fi
 

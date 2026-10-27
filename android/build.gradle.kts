@@ -19,6 +19,20 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// stripe_android compileOnly push-provisioning pulls play-services-tapandpay, which is
+// not on public Maven. lintVitalAnalyzeRelease resolves that classpath and fails CI.
+// We do not use Stripe Issuing push provisioning — skip lintVital for that module.
+// https://github.com/flutter-stripe/flutter_stripe/issues/2252
+subprojects {
+    if (project.name == "stripe_android") {
+        tasks.configureEach {
+            if (name.startsWith("lintVital")) {
+                enabled = false
+            }
+        }
+    }
+}
+
 // Align plugin Kotlin/Java targets without afterEvaluate (app is already evaluated).
 subprojects {
     tasks.withType<JavaCompile>().configureEach {
