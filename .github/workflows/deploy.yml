@@ -1,0 +1,212 @@
+# STYL mobile — production deploy (Google Play + TestFlight).
+#
+# Repository secrets (Settings → Secrets and variables → Actions):
+#
+# Android (required for Play upload):
+#   ANDROID_KEYSTORE_BASE64     — upload-keystore.jks as base64
+#   ANDROID_KEYSTORE_PASSWORD
+#   ANDROID_KEY_ALIAS           — e.g. upload
+#   ANDROID_KEY_PASSWORD
+#   GOOGLE_PLAY_SERVICE_ACCOUNT_JSON — Play Console API service account JSON
+#
+# iOS (required for TestFlight upload):
+#   APPSTORE_ISSUER_ID
+#   APPSTORE_KEY_ID
+#   APPSTORE_PRIVATE_KEY        — .p8 contents (multi-line OK)
+#   IOS_DISTRIBUTION_CERTIFICATE_P12 — base64 .p12 (Apple Distribution)
+#   IOS_DISTRIBUTION_CERTIFICATE_PASSWORD
+#
+# Optional variables:
+#   PLAY_TRACK                  — internal | alpha | beta | production (default: internal)
+#
+name: Mobile Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: What to deploy
+        type: choice
+        options:
+          - android
+          - ios
+          - both
+        default: android
+      play_track:
+        description: Google Play track (Android only)
+        type: choice
+        options:
+          - internal
+          - alpha
+          - beta
+          - production
+        default: internal
+  push:
+    tags:
+      - 'v*.*.*'
+
+env:
+  API_BASE_URL: https://api.stylaus.com/api/v1
+  PACKAGE_NAME: com.stylaus.app
+  IOS_TEAM_ID: S48V9LQKCT
+
+concurrency:
+  group: mobile-deploy
+  cancel-in-progress: false
+
+jobs:
+  resolve-platform:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy_android: ${{ steps.out.outputs.deploy_android }}
+      deploy_ios: ${{ steps.out.outputs.deploy_ios }}
+      play_track: ${{ steps.out.outputs.play_track }}
+    steps:
+      - id: out
+        run: |
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            echo "deploy_android=true" >> "$GITHUB_OUTPUT"
+            echo "deploy_ios=true" >> "$GITHUB_OUTPUT"
+            echo "play_track=${{ vars.PLAY_TRACK || 'production' }}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          case "${{ inputs.platform }}" in
+            android) echo "deploy_android=true" >> "$GITHUB_OUTPUT"; echo "deploy_ios=false" >> "$GITHUB_OUTPUT" ;;
+            ios) echo "deploy_android=false" >> "$GITHUB_OUTPUT"; echo "deploy_ios=true" >> "$GITHUB_OUTPUT" ;;
+            both) echo "deploy_android=true" >> "$GITHUB_OUTPUT"; echo "deploy_ios=true" >> "$GITHUB_OUTPUT" ;;
+          esac
+          echo "play_track=${{ inputs.play_track }}" >> "$GITHUB_OUTPUT"
+
+  android:
+    name: Android → Google Play
+    needs: resolve-platform
+    if: needs.resolve-platform.outputs.deploy_android == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Prepare assets
+        run: chmod +x scripts/ci_prepare.sh && ./scripts/ci_prepare.sh
+
+      - name: Decode upload keystore
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          test -n "$ANDROID_KEYSTORE_BASE64" || { echo "Missing ANDROID_KEYSTORE_BASE64 secret"; exit 1; }
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > android/app/upload-keystore.jks
+
+      - name: Write key.properties
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          test -n "$ANDROID_KEYSTORE_PASSWORD" || { echo "Missing ANDROID_KEYSTORE_PASSWORD"; exit 1; }
+          test -n "$ANDROID_KEY_ALIAS" || { echo "Missing ANDROID_KEY_ALIAS"; exit 1; }
+          test -n "$ANDROID_KEY_PASSWORD" || { echo "Missing ANDROID_KEY_PASSWORD"; exit 1; }
+          {
+            echo "storePassword=${ANDROID_KEYSTORE_PASSWORD}"
+            echo "keyPassword=${ANDROID_KEY_PASSWORD}"
+            echo "keyAlias=${ANDROID_KEY_ALIAS}"
+            echo "storeFile=upload-keystore.jks"
+          } > android/key.properties
+
+      - name: Pub get
+        run: flutter pub get
+
+      - name: Build App Bundle
+        run: |
+          flutter build appbundle --release \
+            --dart-define=API_BASE_URL=${{ env.API_BASE_URL }} \
+            --dart-define=USE_PROD_API=true
+
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1.1.3
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: ${{ env.PACKAGE_NAME }}
+          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          track: ${{ needs.resolve-platform.outputs.play_track }}
+          status: completed
+
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-app-release
+          path: build/app/outputs/bundle/release/app-release.aab
+          if-no-files-found: error
+
+  ios:
+    name: iOS → TestFlight
+    needs: resolve-platform
+    if: needs.resolve-platform.outputs.deploy_ios == 'true'
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Prepare assets
+        run: chmod +x scripts/ci_prepare.sh && ./scripts/ci_prepare.sh
+
+      - name: Install Apple distribution certificate
+        uses: apple-actions/import-codesign-certs@v3
+        with:
+          p12-file-base64: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_P12 }}
+          p12-password: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_PASSWORD }}
+
+      - name: Download App Store provisioning profile
+        uses: apple-actions/download-provisioning-profiles@v4
+        with:
+          bundle-id: ${{ env.PACKAGE_NAME }}
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
+
+      - name: Pub get & CocoaPods
+        run: |
+          flutter pub get
+          cd ios && pod install
+
+      - name: Build IPA
+        run: |
+          flutter build ipa --release \
+            --export-options-plist=ios/ExportOptions.plist \
+            --dart-define=API_BASE_URL=${{ env.API_BASE_URL }} \
+            --dart-define=USE_PROD_API=true
+
+      - name: Resolve IPA path
+        id: ipa
+        run: |
+          IPA="$(ls build/ios/ipa/*.ipa | head -1)"
+          test -f "$IPA" || { echo "No IPA produced"; exit 1; }
+          echo "path=$IPA" >> "$GITHUB_OUTPUT"
+
+      - name: Upload to TestFlight
+        uses: apple-actions/upload-testflight-build@v3
+        with:
+          app-path: ${{ steps.ipa.outputs.path }}
+          issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
+          api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-release-ipa
+          path: ${{ steps.ipa.outputs.path }}
+          if-no-files-found: error

@@ -1,0 +1,5 @@
+# Copy to android/key.properties (never commit). Used for release signing in CI and locally.
+storePassword=your-keystore-password
+keyPassword=your-key-password
+keyAlias=upload
+storeFile=upload-keystore.jks

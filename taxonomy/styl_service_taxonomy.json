@@ -1,0 +1,795 @@
+{
+  "version": "1.0.0",
+  "source": "STYL Master Beauty, Grooming & Wellness Taxonomy",
+  "discoveryCategories": [
+    {
+      "id": "barber",
+      "label": "Barber",
+      "browseTitle": "Barbering",
+      "section": "A",
+      "keywords": [
+        "barber",
+        "fade",
+        "taper",
+        "haircut",
+        "shape",
+        "line-up",
+        "lineup",
+        "afro cut",
+        "buzz",
+        "crop",
+        "undercut",
+        "mullet",
+        "grooming package",
+        "kids cut",
+        "kids haircut",
+        "junior",
+        "teen haircut",
+        "senior haircut"
+      ],
+      "browseTags": [
+        "All",
+        "Fades",
+        "Tapers",
+        "Classic Cuts",
+        "Beard",
+        "Kids",
+        "Seniors"
+      ]
+    },
+    {
+      "id": "womens",
+      "label": "Women's Hair",
+      "browseTitle": "Women's Hair",
+      "section": "B",
+      "keywords": [
+        "blow",
+        "bangs",
+        "curtain",
+        "ladies",
+        "women",
+        "silk",
+        "blowout",
+        "press",
+        "pixie",
+        "bob",
+        "lob",
+        "layers",
+        "updo",
+        "bridal hair",
+        "curl cut",
+        "fringe"
+      ],
+      "browseTags": [
+        "All",
+        "Cut & Style",
+        "Blow Dry",
+        "Curly",
+        "Updos",
+        "Kids",
+        "Occasion"
+      ]
+    },
+    {
+      "id": "colour",
+      "label": "Colour",
+      "browseTitle": "Hair Colour",
+      "section": "C",
+      "keywords": [
+        "colour",
+        "color",
+        "highlight",
+        "balayage",
+        "bleach",
+        "toner",
+        "gloss",
+        "root",
+        "perm",
+        "keratin",
+        "relaxer",
+        "treatment",
+        "bond repair"
+      ],
+      "browseTags": [
+        "All",
+        "Full Colour",
+        "Highlights",
+        "Balayage",
+        "Bleach",
+        "Treatments",
+        "Kids",
+        "Seniors"
+      ]
+    },
+    {
+      "id": "braids",
+      "label": "Braids",
+      "browseTitle": "Braids & Protective",
+      "section": "D",
+      "keywords": [
+        "braid",
+        "cornrow",
+        "twist",
+        "knotless",
+        "box braid",
+        "fulani",
+        "lemonade",
+        "crochet",
+        "loc",
+        "locs",
+        "retwist",
+        "sisterlock"
+      ],
+      "browseTags": [
+        "All",
+        "Box Braids",
+        "Knotless",
+        "Cornrows",
+        "Twists",
+        "Locs",
+        "Kids"
+      ]
+    },
+    {
+      "id": "extensions",
+      "label": "Extensions",
+      "browseTitle": "Wigs & Extensions",
+      "section": "E",
+      "keywords": [
+        "extension",
+        "weave",
+        "wig",
+        "tape-in",
+        "sew-in",
+        "clip-in",
+        "integration",
+        "microlink"
+      ],
+      "browseTags": ["All", "Tape-In", "Weave", "Wig", "Maintenance"]
+    },
+    {
+      "id": "nails",
+      "label": "Nails",
+      "browseTitle": "Nails",
+      "section": "G",
+      "keywords": [
+        "nail",
+        "manicure",
+        "pedicure",
+        "gel",
+        "acrylic",
+        "biab",
+        "fill",
+        "nail art"
+      ],
+      "browseTags": [
+        "All",
+        "Manicure",
+        "Pedicure",
+        "Gel",
+        "Acrylic",
+        "Nail Art",
+        "Kids"
+      ]
+    },
+    {
+      "id": "lashes",
+      "label": "Lashes",
+      "browseTitle": "Lashes",
+      "section": "H",
+      "keywords": [
+        "lash",
+        "volume",
+        "hybrid",
+        "classic lash",
+        "mega volume",
+        "lash lift",
+        "lash tint"
+      ],
+      "browseTags": [
+        "All",
+        "Classic",
+        "Hybrid",
+        "Volume",
+        "Lash Lift",
+        "Consultation"
+      ]
+    },
+    {
+      "id": "beard",
+      "label": "Beard",
+      "browseTitle": "Beard & Shaving",
+      "section": "A",
+      "keywords": [
+        "beard",
+        "shave",
+        "moustache",
+        "hot towel",
+        "wet shave"
+      ],
+      "browseTags": ["All", "Beard Trim", "Shape", "Shave"]
+    },
+    {
+      "id": "beauty",
+      "label": "Beauty",
+      "browseTitle": "Beauty & Wellness",
+      "section": "K",
+      "keywords": [
+        "facial",
+        "skin",
+        "wax",
+        "thread",
+        "sugar",
+        "massage",
+        "makeup",
+        "brow",
+        "lamination",
+        "microblading",
+        "spa",
+        "tan",
+        "peel",
+        "henna",
+        "piercing"
+      ],
+      "browseTags": [
+        "All",
+        "Makeup",
+        "Facials",
+        "Brows",
+        "Hair Removal",
+        "Massage",
+        "Spa"
+      ]
+    }
+  ],
+  "providerCategories": [
+    "Barber",
+    "Women's Hair",
+    "Colour",
+    "Braids",
+    "Extensions",
+    "Nails",
+    "Lashes",
+    "Beard",
+    "Beauty"
+  ],
+  "categoryAliases": {
+    "barbering": "Barber",
+    "barber": "Barber",
+    "hair": "Women's Hair",
+    "womens": "Women's Hair",
+    "womens hair": "Women's Hair",
+    "women's hair": "Women's Hair",
+    "color": "Colour",
+    "colour": "Colour",
+    "nails": "Nails",
+    "lashes": "Lashes",
+    "braids": "Braids",
+    "beard": "Beard",
+    "extensions": "Extensions",
+    "beauty": "Beauty",
+    "wellness": "Beauty",
+    "makeup": "Beauty",
+    "facial": "Beauty",
+    "massage": "Beauty",
+    "brows": "Beauty",
+    "waxing": "Beauty"
+  },
+  "templates": [
+    {
+      "category": "Barber",
+      "subcategory": "Fades",
+      "tag": "Fades",
+      "name": "Skin Fade",
+      "aliases": ["Skin Fade", "Bald Fade"],
+      "description": "Close fade blended to skin, finished with styling.",
+      "defaultPrice": 28,
+      "defaultDurationMin": 45
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Fades",
+      "tag": "Fades",
+      "name": "Low Fade",
+      "description": "Low contrast fade with a clean finish.",
+      "defaultPrice": 26,
+      "defaultDurationMin": 45
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Fades",
+      "tag": "Fades",
+      "name": "Mid Fade",
+      "description": "Balanced mid fade with a clean finish.",
+      "defaultPrice": 26,
+      "defaultDurationMin": 45
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Fades",
+      "tag": "Fades",
+      "name": "High Fade",
+      "description": "High fade with sharp contrast and styling.",
+      "defaultPrice": 28,
+      "defaultDurationMin": 45
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Fades",
+      "tag": "Fades",
+      "name": "Drop Fade",
+      "description": "Drop fade around the ear with a sharp blend.",
+      "defaultPrice": 28,
+      "defaultDurationMin": 45
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Fades",
+      "tag": "Fades",
+      "name": "Burst Fade",
+      "description": "Curved burst fade around the ear.",
+      "defaultPrice": 28,
+      "defaultDurationMin": 45
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Tapers",
+      "tag": "Tapers",
+      "name": "Taper Fade",
+      "description": "Clean taper fade with a polished outline.",
+      "defaultPrice": 25,
+      "defaultDurationMin": 45
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Tapers",
+      "tag": "Tapers",
+      "name": "Low Taper",
+      "description": "Subtle low taper for a neat everyday look.",
+      "defaultPrice": 24,
+      "defaultDurationMin": 40
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Tapers",
+      "tag": "Tapers",
+      "name": "Mid Taper",
+      "aliases": ["Mid Taper"],
+      "description": "Mid taper with balanced weight and finish.",
+      "defaultPrice": 26,
+      "defaultDurationMin": 40
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Classic Cuts",
+      "tag": "Classic Cuts",
+      "name": "Haircut",
+      "aliases": ["Standard Haircut", "Classic Haircut"],
+      "description": "Classic cut tailored to your style.",
+      "defaultPrice": 25,
+      "defaultDurationMin": 30
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Classic Cuts",
+      "tag": "Classic Cuts",
+      "name": "Scissor Cut",
+      "description": "Precision scissor cut and finish.",
+      "defaultPrice": 28,
+      "defaultDurationMin": 40
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Shape-Ups",
+      "tag": "Classic Cuts",
+      "name": "Shape Up",
+      "aliases": ["Shape-Up", "Line-Up", "Line Up"],
+      "description": "Hairline and edge tidy without a full cut.",
+      "defaultPrice": 15,
+      "defaultDurationMin": 20
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Kids & Juniors",
+      "tag": "Kids",
+      "name": "Kids Haircut",
+      "aliases": ["Kids Cut", "Kids Hair Cut", "Junior Haircut"],
+      "description": "Age-appropriate cut for children.",
+      "defaultPrice": 18,
+      "defaultDurationMin": 30
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Kids & Juniors",
+      "tag": "Kids",
+      "name": "Kids Skin Fade",
+      "description": "Skin fade tailored for juniors.",
+      "defaultPrice": 20,
+      "defaultDurationMin": 35
+    },
+    {
+      "category": "Barber",
+      "subcategory": "Combinations",
+      "tag": "Classic Cuts",
+      "name": "Haircut + Beard",
+      "description": "Full haircut with beard trim and shape-up.",
+      "defaultPrice": 35,
+      "defaultDurationMin": 60
+    },
+    {
+      "category": "Beard",
+      "subcategory": "Beard",
+      "tag": "Beard Trim",
+      "name": "Beard Trim",
+      "description": "Beard line-up and tidy.",
+      "defaultPrice": 15,
+      "defaultDurationMin": 30
+    },
+    {
+      "category": "Beard",
+      "subcategory": "Shaving",
+      "tag": "Shave",
+      "name": "Hot Towel Shave",
+      "aliases": ["Wet Shave"],
+      "description": "Traditional hot towel shave.",
+      "defaultPrice": 25,
+      "defaultDurationMin": 40
+    },
+    {
+      "category": "Beard",
+      "subcategory": "Beard",
+      "tag": "Shape",
+      "name": "Beard Shape Up",
+      "aliases": ["Beard Shape", "Beard Sculpting"],
+      "description": "Sharp beard outline and edge.",
+      "defaultPrice": 12,
+      "defaultDurationMin": 20
+    },
+    {
+      "category": "Women's Hair",
+      "subcategory": "Blow Dry",
+      "tag": "Blow Dry",
+      "name": "Wash & Blow Dry",
+      "aliases": ["Blow Dry"],
+      "description": "Shampoo, condition and professional blow dry.",
+      "defaultPrice": 30,
+      "defaultDurationMin": 45
+    },
+    {
+      "category": "Women's Hair",
+      "subcategory": "Cut & Style",
+      "tag": "Cut & Style",
+      "name": "Ladies Cut",
+      "aliases": ["Wash & Cut", "Cut & Finish", "Restyle"],
+      "description": "Restyle or trim with finish styling.",
+      "defaultPrice": 35,
+      "defaultDurationMin": 45
+    },
+    {
+      "category": "Women's Hair",
+      "subcategory": "Curly Hair",
+      "tag": "Curly",
+      "name": "Curly Cut",
+      "aliases": ["Dry Curl Cut", "Curl Shaping"],
+      "description": "Cut and shape for natural curls.",
+      "defaultPrice": 40,
+      "defaultDurationMin": 50
+    },
+    {
+      "category": "Women's Hair",
+      "subcategory": "Medium/Long Hair",
+      "tag": "Cut & Style",
+      "name": "Curtain Bangs",
+      "description": "Face-framing curtain bangs cut and style.",
+      "defaultPrice": 22,
+      "defaultDurationMin": 30
+    },
+    {
+      "category": "Women's Hair",
+      "subcategory": "Styling",
+      "tag": "Blow Dry",
+      "name": "Silk Press",
+      "description": "Smooth silk press finish.",
+      "defaultPrice": 55,
+      "defaultDurationMin": 90
+    },
+    {
+      "category": "Women's Hair",
+      "subcategory": "Occasion Hair",
+      "tag": "Occasion",
+      "name": "Bridal Hair",
+      "description": "Bridal hair styling and finish.",
+      "defaultPrice": 85,
+      "defaultDurationMin": 90
+    },
+    {
+      "category": "Colour",
+      "subcategory": "Full Colour",
+      "tag": "Full Colour",
+      "name": "Full Colour",
+      "aliases": ["Full Head Colour", "Permanent Colour"],
+      "description": "Full head professional colour.",
+      "defaultPrice": 55,
+      "defaultDurationMin": 120
+    },
+    {
+      "category": "Colour",
+      "subcategory": "Highlights",
+      "tag": "Highlights",
+      "name": "Highlights",
+      "aliases": ["Full Highlights", "Babylights"],
+      "description": "Partial or full highlights.",
+      "defaultPrice": 65,
+      "defaultDurationMin": 120
+    },
+    {
+      "category": "Colour",
+      "subcategory": "Balayage",
+      "tag": "Balayage",
+      "name": "Balayage",
+      "aliases": ["Full Balayage"],
+      "description": "Hand-painted balayage colour.",
+      "defaultPrice": 85,
+      "defaultDurationMin": 150
+    },
+    {
+      "category": "Colour",
+      "subcategory": "Root Colour",
+      "tag": "Full Colour",
+      "name": "Root Touch Up",
+      "aliases": ["Root Retouch", "Root Touch-Up"],
+      "description": "Root colour refresh.",
+      "defaultPrice": 35,
+      "defaultDurationMin": 60
+    },
+    {
+      "category": "Colour",
+      "subcategory": "Smoothing",
+      "tag": "Treatments",
+      "name": "Keratin Treatment",
+      "description": "Smoothing keratin treatment.",
+      "defaultPrice": 120,
+      "defaultDurationMin": 150
+    },
+    {
+      "category": "Braids",
+      "subcategory": "Knotless Braids",
+      "tag": "Knotless",
+      "name": "Knotless Braids",
+      "description": "Protective knotless braids.",
+      "defaultPrice": 120,
+      "defaultDurationMin": 240
+    },
+    {
+      "category": "Braids",
+      "subcategory": "Box Braids",
+      "tag": "Box Braids",
+      "name": "Box Braids",
+      "description": "Classic box braids install.",
+      "defaultPrice": 110,
+      "defaultDurationMin": 240
+    },
+    {
+      "category": "Braids",
+      "subcategory": "Cornrows",
+      "tag": "Cornrows",
+      "name": "Cornrows",
+      "aliases": ["Straight Backs", "Feed-In Cornrows"],
+      "description": "Cornrow styles to your design.",
+      "defaultPrice": 45,
+      "defaultDurationMin": 90
+    },
+    {
+      "category": "Braids",
+      "subcategory": "Twists",
+      "tag": "Twists",
+      "name": "Twists",
+      "aliases": ["Passion Twists", "Senegalese Twists"],
+      "description": "Two-strand or passion twists.",
+      "defaultPrice": 80,
+      "defaultDurationMin": 180
+    },
+    {
+      "category": "Braids",
+      "subcategory": "Locs",
+      "tag": "Locs",
+      "name": "Loc Retwist",
+      "aliases": ["Loc Maintenance"],
+      "description": "Loc maintenance and retwist.",
+      "defaultPrice": 65,
+      "defaultDurationMin": 120
+    },
+    {
+      "category": "Extensions",
+      "subcategory": "Tape-In",
+      "tag": "Tape-In",
+      "name": "Tape-In Extensions",
+      "description": "Tape-in hair extension install.",
+      "defaultPrice": 150,
+      "defaultDurationMin": 120
+    },
+    {
+      "category": "Extensions",
+      "subcategory": "Weave",
+      "tag": "Weave",
+      "name": "Sew-In Weave",
+      "aliases": ["Sew-In"],
+      "description": "Sew-in weave install.",
+      "defaultPrice": 130,
+      "defaultDurationMin": 180
+    },
+    {
+      "category": "Extensions",
+      "subcategory": "Wig",
+      "tag": "Wig",
+      "name": "Wig Install",
+      "description": "Wig install and blend.",
+      "defaultPrice": 80,
+      "defaultDurationMin": 90
+    },
+    {
+      "category": "Nails",
+      "subcategory": "Manicure",
+      "tag": "Manicure",
+      "name": "Manicure",
+      "aliases": ["Classic Manicure"],
+      "description": "Classic manicure with polish.",
+      "defaultPrice": 25,
+      "defaultDurationMin": 45
+    },
+    {
+      "category": "Nails",
+      "subcategory": "Pedicure",
+      "tag": "Pedicure",
+      "name": "Pedicure",
+      "description": "Classic pedicure with polish.",
+      "defaultPrice": 30,
+      "defaultDurationMin": 50
+    },
+    {
+      "category": "Nails",
+      "subcategory": "Gel",
+      "tag": "Gel",
+      "name": "Gel Manicure",
+      "aliases": ["Gel Nails", "Shellac Manicure"],
+      "description": "Long-lasting gel manicure.",
+      "defaultPrice": 35,
+      "defaultDurationMin": 60
+    },
+    {
+      "category": "Nails",
+      "subcategory": "Acrylic",
+      "tag": "Acrylic",
+      "name": "Acrylic Full Set",
+      "aliases": ["Acrylic Nails"],
+      "description": "Full set of acrylic nails with finish.",
+      "defaultPrice": 45,
+      "defaultDurationMin": 90
+    },
+    {
+      "category": "Nails",
+      "subcategory": "Acrylic",
+      "tag": "Acrylic",
+      "name": "Acrylic Fill",
+      "description": "Acrylic fill and tidy.",
+      "defaultPrice": 30,
+      "defaultDurationMin": 60
+    },
+    {
+      "category": "Nails",
+      "subcategory": "Nail Art",
+      "tag": "Nail Art",
+      "name": "Nail Art",
+      "description": "Custom nail art add-on.",
+      "defaultPrice": 15,
+      "defaultDurationMin": 30
+    },
+    {
+      "category": "Lashes",
+      "subcategory": "Classic Extensions",
+      "tag": "Classic",
+      "name": "Classic Lashes",
+      "aliases": ["Classic Full Set"],
+      "description": "Classic lash extensions.",
+      "defaultPrice": 50,
+      "defaultDurationMin": 90
+    },
+    {
+      "category": "Lashes",
+      "subcategory": "Hybrid Extensions",
+      "tag": "Hybrid",
+      "name": "Hybrid Lashes",
+      "aliases": ["Hybrid Full Set"],
+      "description": "Hybrid volume lash set.",
+      "defaultPrice": 60,
+      "defaultDurationMin": 100
+    },
+    {
+      "category": "Lashes",
+      "subcategory": "Volume Extensions",
+      "tag": "Volume",
+      "name": "Volume Lashes",
+      "aliases": ["Russian Volume"],
+      "description": "Full volume lash extensions.",
+      "defaultPrice": 70,
+      "defaultDurationMin": 120
+    },
+    {
+      "category": "Lashes",
+      "subcategory": "Lash Lift",
+      "tag": "Lash Lift",
+      "name": "Lash Lift",
+      "aliases": ["Lash Lift & Tint"],
+      "description": "Natural lash lift and tint.",
+      "defaultPrice": 40,
+      "defaultDurationMin": 60
+    },
+    {
+      "category": "Beauty",
+      "subcategory": "Brows",
+      "tag": "Brows",
+      "name": "Brow Shape",
+      "aliases": ["Brow Wax", "Brow Thread"],
+      "description": "Clean brow shape and tidy.",
+      "defaultPrice": 12,
+      "defaultDurationMin": 20
+    },
+    {
+      "category": "Beauty",
+      "subcategory": "Facials",
+      "tag": "Facials",
+      "name": "Facial",
+      "aliases": ["Classic Facial", "Express Facial"],
+      "description": "Deep cleanse facial treatment.",
+      "defaultPrice": 45,
+      "defaultDurationMin": 60
+    },
+    {
+      "category": "Beauty",
+      "subcategory": "Hair Removal",
+      "tag": "Hair Removal",
+      "name": "Full Face Wax",
+      "description": "Full face waxing treatment.",
+      "defaultPrice": 30,
+      "defaultDurationMin": 40
+    },
+    {
+      "category": "Beauty",
+      "subcategory": "Hair Removal",
+      "tag": "Hair Removal",
+      "name": "Eyebrow Wax",
+      "description": "Eyebrow wax and tidy.",
+      "defaultPrice": 12,
+      "defaultDurationMin": 15
+    },
+    {
+      "category": "Beauty",
+      "subcategory": "Massage",
+      "tag": "Massage",
+      "name": "Massage",
+      "aliases": ["Swedish Massage", "Relaxation Massage"],
+      "description": "Relaxing massage session.",
+      "defaultPrice": 50,
+      "defaultDurationMin": 60
+    },
+    {
+      "category": "Beauty",
+      "subcategory": "Makeup",
+      "tag": "Makeup",
+      "name": "Bridal Makeup",
+      "description": "Bridal makeup application.",
+      "defaultPrice": 75,
+      "defaultDurationMin": 60
+    },
+    {
+      "category": "Beauty",
+      "subcategory": "Makeup",
+      "tag": "Makeup",
+      "name": "Soft Glam Makeup",
+      "aliases": ["Glam Makeup", "Evening Makeup"],
+      "description": "Soft glam makeup for events.",
+      "defaultPrice": 55,
+      "defaultDurationMin": 45
+    }
+  ]
+}

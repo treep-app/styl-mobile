@@ -1,0 +1,62 @@
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+*.dart.js
+*.info.json
+*.js
+*.js_
+*.js.deps
+*.js.map
+
+# Android
+**/android/local.properties
+**/android/key.properties
+!**/android/key.properties.example
+**/android/**/*.keystore
+**/android/**/*.jks
+**/android/.gradle/
+**/android/**/build/
+
+# iOS / macOS
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Team.local.xcconfig
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/**/DerivedData/
+**/ios/**/xcuserdata/
+**/macos/Flutter/ephemeral/
+
+# Secrets & signing (never commit)
+.env
+.env.*
+!.env.example
+*.p12
+*.mobileprovision
+*.pem
+AuthKey_*.p8
+**/google-services.json
+**/GoogleService-Info.plist
+# GCP / Play Console service account JSON downloads
+**/*iam.gserviceaccount.com*.json
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# Local build outputs
+dist/

@@ -1,0 +1,4 @@
+// Optional: copy to Team.local.xcconfig (gitignored) for day-to-day device builds on YOUR Apple team.
+// Do NOT use for TestFlight — run ./scripts/build_ios_testflight.sh instead (uses S48V9LQKCT).
+// TestFlight script temporarily disables Team.local.xcconfig if present.
+DEVELOPMENT_TEAM=YOUR_TEAM_ID
