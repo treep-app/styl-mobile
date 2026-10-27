@@ -7,8 +7,14 @@ import 'package:styl_app/features/customer/presentation/customer_home_screen.dar
 import 'package:styl_app/features/customer/presentation/customer_shell.dart';
 import 'package:styl_app/features/provider/presentation/provider_shell.dart';
 
+import 'test_helpers.dart';
+
 void main() {
-  testWidgets('role selection is the unique customer entry gate', (
+  setUpAll(() async {
+    await initStylTestEnvironment();
+  });
+
+  testWidgets('role selection shows account type choices', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(
@@ -17,64 +23,70 @@ void main() {
 
     expect(find.text('Who are you?'), findsOneWidget);
     expect(find.text('Customer'), findsOneWidget);
-    expect(find.text('Next'), findsOneWidget);
+    expect(find.text('Service Provider'), findsOneWidget);
+    expect(find.text('Sign Up'), findsOneWidget);
+    expect(find.text('Log In'), findsOneWidget);
   });
 
-  testWidgets('customer shell exposes four unique tabs', (
+  testWidgets('customer shell exposes five bottom tabs', (
     WidgetTester tester,
   ) async {
+    final harness = createTestHarness();
     await tester.pumpWidget(
-      const MaterialApp(
-        home: CustomerShell(),
-      ),
+      harness.app(home: const CustomerShell()),
     );
+    await tester.pump();
 
     expect(find.text('Home'), findsOneWidget);
-    expect(find.byIcon(Icons.calendar_month_outlined), findsOneWidget);
-    expect(find.byIcon(Icons.credit_card_outlined), findsOneWidget);
-    expect(find.byIcon(Icons.person_outline), findsOneWidget);
+    expect(find.text('Explore'), findsOneWidget);
+    expect(find.text('Bookings'), findsOneWidget);
+    expect(find.text('Saved'), findsOneWidget);
+    expect(find.text('Profile'), findsOneWidget);
     expect(AppRoutes.customerShell, '/customer');
+
+    await tearDownStylTest(tester, harness);
   });
 
-  testWidgets('provider shell exposes home notifications settings profile', (
+  testWidgets('provider shell exposes home calendar clients more', (
     WidgetTester tester,
   ) async {
+    final harness = createTestHarness();
     await tester.pumpWidget(
-      const MaterialApp(home: ProviderShell()),
+      harness.app(home: const ProviderShell()),
     );
+    await tester.pump();
 
-    expect(find.textContaining('Hi'), findsOneWidget);
-    expect(find.textContaining('Immanuel'), findsOneWidget);
-    expect(find.text('Total'), findsOneWidget);
-    expect(find.byIcon(Icons.notifications_none_rounded), findsOneWidget);
-    expect(find.byIcon(Icons.settings_outlined), findsOneWidget);
-    expect(find.byIcon(Icons.person_outline), findsOneWidget);
+    expect(find.text('Home'), findsOneWidget);
+    expect(find.text('Calendar'), findsOneWidget);
+    expect(find.text('Clients'), findsOneWidget);
+    expect(find.text('More'), findsOneWidget);
     expect(AppRoutes.providerShell, '/provider');
+
+    await tearDownStylTest(tester, harness);
   });
 
-  testWidgets('home shows notification icon and view more actions', (
+  testWidgets('customer home shows brand header and notifications', (
     WidgetTester tester,
   ) async {
+    final harness = createTestHarness();
     await tester.pumpWidget(
-      MaterialApp(
+      harness.app(
         home: const Scaffold(body: CustomerHomeScreen()),
         routes: {
           AppRoutes.notifications: (_) =>
               const Scaffold(body: Text('Notification')),
-          AppRoutes.barberList: (_) =>
-              const Scaffold(body: Text('Barber list')),
         },
       ),
     );
+    await tester.pump();
 
+    expect(find.text('STYL'), findsOneWidget);
     expect(find.byIcon(Icons.notifications_none_rounded), findsOneWidget);
-    expect(find.text('Appointment due Today at 2:00pm'), findsOneWidget);
-    expect(find.text('view more'), findsNWidgets(2));
-    expect(find.text('Best Freelance Barbers'), findsOneWidget);
-    expect(find.text('Barber shops near you'), findsOneWidget);
 
     await tester.tap(find.byIcon(Icons.notifications_none_rounded));
     await tester.pumpAndSettle();
     expect(find.text('Notification'), findsOneWidget);
+
+    await tearDownStylTest(tester, harness);
   });
 }

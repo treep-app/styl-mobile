@@ -15,11 +15,15 @@ import 'session_store.dart';
 
 /// App-wide auth + API façade.
 class AuthController extends ChangeNotifier {
-  AuthController({SessionStore? store}) : _store = store ?? SessionStore() {
-    _client = ApiClient(
-      readAccessToken: _store.readAccessToken,
-      tryRefresh: refreshSession,
-    );
+  AuthController({
+    SessionStore? store,
+    ApiClient? apiClient,
+  }) : _store = store ?? SessionStore() {
+    _client = apiClient ??
+        ApiClient(
+          readAccessToken: _store.readAccessToken,
+          tryRefresh: refreshSession,
+        );
     authApi = AuthApi(_client);
     uploadsApi = UploadsApi(_client);
     catalogApi = CatalogApi(_client);
