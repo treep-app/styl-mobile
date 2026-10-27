@@ -8,6 +8,7 @@
 /// - `7911123456`
 /// - `447911123456` / `+447911123456`
 /// - `+44(0)7911123456`
+library;
 
 String _digitsOnly(String input) => input.replaceAll(RegExp(r'\D'), '');
 

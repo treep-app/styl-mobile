@@ -40,7 +40,7 @@ class LooksyCategoryIcon extends StatelessWidget {
         alignment: Alignment.center,
         filterQuality: FilterQuality.high,
         gaplessPlayback: true,
-        errorBuilder: (_, __, ___) => Icon(
+        errorBuilder: (_, _, _) => Icon(
           Icons.spa_rounded,
           size: size * 0.72,
           color: LooksUi.ink.withValues(alpha: 0.35),

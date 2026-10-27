@@ -185,7 +185,7 @@ class CatalogApi {
         if (email != null && email.isNotEmpty) 'email': email,
         if (avatarUrl != null && avatarUrl.isNotEmpty) 'avatarUrl': avatarUrl,
         if (specialty != null && specialty.isNotEmpty) 'specialty': specialty,
-        if (commissionPercent != null) 'commissionPercent': commissionPercent,
+        'commissionPercent': ?commissionPercent,
       },
     );
     return SpecialistDto.fromJson(data['member'] as Map<String, dynamic>);
@@ -215,8 +215,8 @@ class CatalogApi {
     final data = await _client.patch(
       '/shops/$shopId/members/$barberUserId',
       body: {
-        if (receiveBookings != null) 'receiveBookings': receiveBookings,
-        if (specialty != null) 'specialty': specialty,
+        'receiveBookings': ?receiveBookings,
+        'specialty': ?specialty,
       },
     );
     return SpecialistDto.fromJson(data['member'] as Map<String, dynamic>);
@@ -369,11 +369,11 @@ class CatalogApi {
         'currency': currency,
         'durationMin': durationMin,
         if (category != null && category.isNotEmpty) 'category': category,
-        if (description != null) 'description': description,
+        'description': ?description,
         if (imageUrl != null && imageUrl.isNotEmpty) 'imageUrl': imageUrl,
         'priceType': priceType,
-        if (assignedBarberIds != null) 'assignedBarberIds': assignedBarberIds,
-        if (relatedLooks != null) 'relatedLooks': relatedLooks,
+        'assignedBarberIds': ?assignedBarberIds,
+        'relatedLooks': ?relatedLooks,
       },
     );
     return ServiceDto.fromJson(data['service'] as Map<String, dynamic>);
@@ -397,17 +397,17 @@ class CatalogApi {
     final data = await _client.patch(
       '/shops/$shopId/services/$serviceId',
       body: {
-        if (name != null) 'name': name,
-        if (priceAmount != null) 'priceAmount': priceAmount,
-        if (currency != null) 'currency': currency,
-        if (durationMin != null) 'durationMin': durationMin,
-        if (category != null) 'category': category,
-        if (description != null) 'description': description,
-        if (imageUrl != null) 'imageUrl': imageUrl,
-        if (priceType != null) 'priceType': priceType,
-        if (isActive != null) 'isActive': isActive,
-        if (assignedBarberIds != null) 'assignedBarberIds': assignedBarberIds,
-        if (relatedLooks != null) 'relatedLooks': relatedLooks,
+        'name': ?name,
+        'priceAmount': ?priceAmount,
+        'currency': ?currency,
+        'durationMin': ?durationMin,
+        'category': ?category,
+        'description': ?description,
+        'imageUrl': ?imageUrl,
+        'priceType': ?priceType,
+        'isActive': ?isActive,
+        'assignedBarberIds': ?assignedBarberIds,
+        'relatedLooks': ?relatedLooks,
       },
     );
     return ServiceDto.fromJson(data['service'] as Map<String, dynamic>);

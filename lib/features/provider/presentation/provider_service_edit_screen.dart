@@ -135,10 +135,10 @@ class _ProviderServiceEditScreenState extends State<ProviderServiceEditScreen> {
     if (picked == null || !mounted) return;
 
     setState(() => _uploading = true);
+    final auth = context.read<AuthController>();
     try {
       final bytes = await picked.readAsBytes();
-      final uploaded =
-          await context.read<AuthController>().uploadsApi.uploadImage(
+      final uploaded = await auth.uploadsApi.uploadImage(
                 bytes: bytes,
                 filename: picked.name.isNotEmpty ? picked.name : 'service.jpg',
                 purpose: 'shop',

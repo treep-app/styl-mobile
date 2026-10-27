@@ -42,7 +42,7 @@ class AuthApi {
         'code': code,
         if (fullName != null && fullName.isNotEmpty) 'fullName': fullName,
         if (password != null && password.isNotEmpty) 'password': password,
-        if (role != null) 'role': role,
+        'role': ?role,
       },
     );
     return AuthSessionResult.fromJson(data);
@@ -59,7 +59,7 @@ class AuthApi {
       body: {
         'phone': toE164(phone),
         'password': password,
-        if (role != null) 'role': role,
+        'role': ?role,
       },
     );
     return AuthSessionResult.fromJson(data);
@@ -78,7 +78,7 @@ class AuthApi {
     await _client.post(
       '/auth/logout',
       body: {
-        if (refreshToken != null) 'refreshToken': refreshToken,
+        'refreshToken': ?refreshToken,
       },
     );
   }
@@ -96,9 +96,9 @@ class AuthApi {
     final data = await _client.patch(
       '/me',
       body: {
-        if (fullName != null) 'fullName': fullName,
-        if (email != null) 'email': email,
-        if (avatarUrl != null) 'avatarUrl': avatarUrl,
+        'fullName': ?fullName,
+        'email': ?email,
+        'avatarUrl': ?avatarUrl,
       },
     );
     return StylUser.fromJson(data['user'] as Map<String, dynamic>);
@@ -120,7 +120,7 @@ class AuthApi {
       '/auth/complete-onboarding',
       body: {
         'role': role,
-        if (providerType != null) 'providerType': providerType,
+        'providerType': ?providerType,
       },
     );
     return AuthSessionResult.fromJson(data);

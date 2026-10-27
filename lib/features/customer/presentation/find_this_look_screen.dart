@@ -49,7 +49,7 @@ class _FindThisLookScreenState extends State<FindThisLookScreen> {
           auth.lookById('low-taper') ??
           (auth.marketplaceLooks.isNotEmpty ? auth.marketplaceLooks.first : null);
       final chips = <StyleLook>[
-        if (suggested != null) suggested,
+        ?suggested,
         ...data.alternatives,
       ];
       final seen = <String>{};
@@ -72,7 +72,7 @@ class _FindThisLookScreenState extends State<FindThisLookScreen> {
           .toList();
       setState(() {
         _suggested = fallback;
-        _choices = [if (fallback != null) fallback, ...related];
+        _choices = [?fallback, ...related];
         _loading = false;
       });
     }

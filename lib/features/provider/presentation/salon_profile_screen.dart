@@ -256,9 +256,10 @@ class _SalonProfileScreenState extends State<SalonProfileScreen> {
         _uploadingLogo = true;
       }
     });
+    final auth = context.read<AuthController>();
     try {
       final bytes = await picked.readAsBytes();
-      final uploaded = await context.read<AuthController>().uploadsApi.uploadImage(
+      final uploaded = await auth.uploadsApi.uploadImage(
             bytes: bytes,
             filename: picked.name.isNotEmpty
                 ? picked.name

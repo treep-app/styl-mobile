@@ -34,9 +34,9 @@ jobs:
       - name: Pub get
         run: flutter pub get
 
-      # Fail on errors and warnings only (not style-level info hints).
+      # Infos are reported but do not fail the job (Flutter treats them as fatal by default).
       - name: Analyze
-        run: flutter analyze
+        run: flutter analyze --no-fatal-infos
 
       - name: Test
         run: flutter test

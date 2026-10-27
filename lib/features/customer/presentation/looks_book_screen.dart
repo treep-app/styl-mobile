@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -455,7 +454,7 @@ class _LooksBookScreenState extends State<LooksBookScreen> {
     final dates = start.replaceAll('-', '').replaceAll(':', '').split('.').first;
     await launchUrl(
       Uri.parse(
-        'https://calendar.google.com/calendar/render?action=TEMPLATE&text=$title&dates=${dates}/$dates',
+        'https://calendar.google.com/calendar/render?action=TEMPLATE&text=$title&dates=$dates/$dates',
       ),
       mode: LaunchMode.externalApplication,
     );
@@ -553,13 +552,12 @@ class _LooksBookScreenState extends State<LooksBookScreen> {
                     _selectedCardId = id;
                   }),
                   onAddCard: () async {
-                    final added = await Navigator.of(context).pushNamed(AppRoutes.addCard);
+                    final auth = context.read<AuthController>();
+                    final added = await Navigator.of(context)
+                        .pushNamed(AppRoutes.addCard);
                     if (!mounted) return;
                     try {
-                      final cards = await context
-                          .read<AuthController>()
-                          .paymentsApi
-                          .listMethods();
+                      final cards = await auth.paymentsApi.listMethods();
                       if (!mounted) return;
                       setState(() {
                         _cards = cards;

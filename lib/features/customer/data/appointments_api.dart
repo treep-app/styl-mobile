@@ -10,7 +10,7 @@ class AppointmentsApi {
     final data = await _client.get(
       '/appointments',
       query: {
-        if (status != null) 'status': status,
+        'status': ?status,
       },
     );
     final list = data['appointments'] as List<dynamic>? ?? [];
@@ -38,9 +38,9 @@ class AppointmentsApi {
         'shopId': shopId,
         'barberUserId': barberUserId,
         'scheduledStart': scheduledStart,
-        if (serviceId != null) 'serviceId': serviceId,
-        if (paymentMethod != null) 'paymentMethod': paymentMethod,
-        if (notes != null) 'notes': notes,
+        'serviceId': ?serviceId,
+        'paymentMethod': ?paymentMethod,
+        'notes': ?notes,
       },
     );
     return AppointmentDto.fromJson(data['appointment'] as Map<String, dynamic>);
@@ -77,7 +77,7 @@ class AppointmentsApi {
       '/appointments/$id/pay',
       body: {
         'paymentMethod': paymentMethod,
-        if (paymentMethodId != null) 'paymentMethodId': paymentMethodId,
+        'paymentMethodId': ?paymentMethodId,
       },
     );
     return PayAppointmentResult(

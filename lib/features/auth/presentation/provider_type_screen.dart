@@ -99,7 +99,7 @@ class _ProviderTypeScreenState extends State<ProviderTypeScreen> {
     'Taper Fade',
     'Beard Trim',
   };
-  var _selectedSpecialties = <String>{'Low Taper'};
+  final _selectedSpecialties = <String>{'Low Taper'};
   final _portfolio = <_PortfolioShot>[];
   var _addingPortfolio = false;
 
