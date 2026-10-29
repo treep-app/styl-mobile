@@ -11,6 +11,9 @@ abstract final class AppColors {
   static const Color brandSecondary = Color(0xFF31373A);
 
   static const Color lightBackground = Color(0xFFFFFFFF);
+
+  /// Splash / cold start — white per Figma #217:2591 (not brand navy).
+  static const Color splashBackground = Color(0xFFFFFFFF);
   static const Color lightCanvas = Color(0xFFF4F6FA);
   static const Color lightSurface = Color(0xFFFFFFFF);
   static const Color lightSurfaceVariant = Color(0xFFF2F3F7);

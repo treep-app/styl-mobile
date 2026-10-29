@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 /// STYL master taxonomy (shared with backend `taxonomy/styl_service_taxonomy.json`).
 abstract final class StylTaxonomy {
-  static const assetPath = '../taxonomy/styl_service_taxonomy.json';
+  static const assetPath = 'taxonomy/styl_service_taxonomy.json';
 
   static bool _loaded = false;
   static String version = '1.0.0';

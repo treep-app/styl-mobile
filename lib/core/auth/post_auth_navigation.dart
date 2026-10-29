@@ -171,3 +171,18 @@ Future<PostAuthDestination> resolvePostAuthDestination(
 
   return const PostAuthDestination(AppRoutes.providerShell);
 }
+
+/// First screen after the OS launch splash (no second in-app splash).
+Future<PostAuthDestination> resolveStartupDestination(
+  AuthController auth, {
+  SessionStore? store,
+}) async {
+  if (auth.isLoggedIn) {
+    return resolvePostAuthDestination(auth, store: store);
+  }
+  final session = store ?? SessionStore();
+  final onboardingDone = await session.isOnboardingDone();
+  return PostAuthDestination(
+    onboardingDone ? AppRoutes.welcome : AppRoutes.onboarding,
+  );
+}

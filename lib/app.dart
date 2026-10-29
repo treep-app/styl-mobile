@@ -4,13 +4,16 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/constants/app_constants.dart';
 import 'core/notifications/notification_host.dart';
+import 'core/auth/post_auth_navigation.dart';
 import 'core/routing/app_navigator.dart';
 import 'core/routing/app_router.dart';
-import 'core/routing/app_routes.dart';
 import 'core/theme/app_theme.dart';
 
 class StylApp extends StatelessWidget {
-  const StylApp({super.key});
+  const StylApp({required this.startup, super.key});
+
+  /// Resolved in [main] after auth bootstrap — avoids a second in-app splash.
+  final PostAuthDestination startup;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +26,18 @@ class StylApp extends StatelessWidget {
       // Product UI is light-first (white scaffolds). System dark mode made
       // AppBar titles inherit light text on white bars → invisible labels.
       themeMode: ThemeMode.light,
-      initialRoute: AppRoutes.splash,
-      onGenerateRoute: AppRouter.onGenerateRoute,
+      initialRoute: startup.route,
+      onGenerateRoute: (settings) {
+        final merged = settings.name == startup.route &&
+                settings.arguments == null &&
+                startup.arguments != null
+            ? RouteSettings(
+                name: settings.name,
+                arguments: startup.arguments,
+              )
+            : settings;
+        return AppRouter.onGenerateRoute(merged);
+      },
       builder: (context, child) {
         return NotificationHost(child: child ?? const SizedBox.shrink());
       },
